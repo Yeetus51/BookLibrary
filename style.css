@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+}
+:root{
+    --base-r:206;
+    --base-g:134;
+    --base-b:86;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 100vh;
+    background-image: url("wallofshelves.jpg");
+    backdrop-filter: blur(10px) brightness(0.7);
+}
+
+.library{
+    background-color: rgb(122, 60, 18);
+    width: 500px;
+    height: 800px;
+    padding: 20px;
+    border: 4px solid rgb(179, 102, 50);
+}
+
+.shelfarea{
+    background-color: rgb(153, 85, 39);
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(5,1fr);
+
+
+}
+.singleshelf{
+    background-color: rgb(190, 114, 62);
+    padding: 5px;
+}
+.shelf {
+    border-bottom: 10px solid rgb(206, 134, 86);
+    border-left: 20px solid rgb(201, 131, 84); 
+    border-top: 20px solid rgb(124, 83, 55);
+    border-right: 20px solid rgb(141, 92, 59);
+    background-color: rgb(107, 70, 45);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.shelfcontent {
+    margin: -20px -20px -10px -20px;  /* padding values match the border widths */
+    width: 137%;
+    height: 127%;
+    box-sizing: border-box;
+    display: flex; /* propagate flex behavior */
+    justify-content: left;
+    gap: 3%;
+    position: relative;
+}
+
+.book {
+    /* background: linear-gradient(to right, rgb(138, 62, 0),rgb(184, 83, 0), rgb(138, 62, 0)); */
+    width: 30%;
+    height: 100%;
+    display: flex;
+}
+.book .left{
+    background: linear-gradient(to right, rgb(109, 49, 0),rgb(184, 83, 0));
+    width: 20%;
+    height: 100%;
+}
+.book .center{
+    background-color: rgb(184, 83, 0);
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+    padding-bottom: 8px;
+}
+.book .center .title{
+    background-color: rgb(212, 188, 167);
+    border-radius: 5px;
+    border: 2px solid rgb(97, 49, 13);
+    width: 100%;
+    height: 80%;
+}
+.pagenumber { 
+    font-family: 'Young Serif', serif;
+}
+.title p{
+    writing-mode:vertical-lr;
+    font-family: 'Young Serif', serif;
+}
+
+.book .right{
+    background: linear-gradient(to left, rgb(109, 49, 0),rgb(184, 83, 0));
+    width: 20%;
+    height: 100%;
+}
+    
+
+.addbookbutton{
+
+    width: 100%;
+    height: 100%;
+}
+.newbookcontainer{
+
+    width: 100%;
+    height: 100%;
+}
