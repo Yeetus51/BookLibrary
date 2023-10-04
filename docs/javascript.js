@@ -18,11 +18,21 @@ function Book(title, author, pages, read, content){
 function addBookToLibrary(book){
     let newBook = new Book(book.title, book.author, book.pages, book.read, book.content);
     myLibrary.push(newBook);
-
-    myLibrary.forEach(book => {
-        console.log(book);
+}
+function removeBookFromLibrary(toRemove){
+    shelfArray.forEach(shelf => {
+        for(let i = 0; i < shelf.books.length; i++){
+            if(isSameBook(shelf.books[i],toRemove)){
+                shelf.books.splice(i,1);
+            }
+        }
     });
 }
+
+function isSameBook(book1,book2){
+    return (book1.title === book2.title && book1.author === book2.author && book1.content === book2.content && book1.pages === book2.pages)
+}
+
 
 
 function ShelfContainer(shelf, books){
@@ -36,7 +46,7 @@ let book = document.querySelector(".shelfcontent .book");
 let shelfarea = document.querySelector(".shelfarea");
 let singleshelf = document.querySelector(".singleshelf");
 let shelfContent = document.querySelector(".shelfcontent");
-console.log(shelfContent);
+
 
 shelfContent.querySelector(".book").remove();
 
@@ -47,8 +57,9 @@ console.log(`test ${shelfArray[0].shelf}`);
 
 for (let i = 0; i < 14; i++){
     let shelfclone = singleshelf.cloneNode(true);
+    let content = shelfclone.querySelector(".shelfcontent");
     shelfarea.appendChild(shelfclone);
-    shelfArray.push(new ShelfContainer(shelfclone,[]));
+    shelfArray.push(new ShelfContainer(content,[]));
 }
 
 let addButton = document.querySelector(".add");
@@ -67,6 +78,7 @@ addButton.addEventListener('click', () =>{
         if(shelfArray[i].books.length > 2)continue; 
 
         shelfArray[i].books[shelfArray[i].books.length] = new Book(newBook.title,newBook.author,newBook.pages,newBook.read,newBook.content);
+        console.log(shelfArray[i].books[shelfArray[i].books.length - 1] );
 
         let newBookClone = book.cloneNode(true); 
         let newBookPagesText = newBookClone.querySelector(".pagenumber");
@@ -79,10 +91,27 @@ addButton.addEventListener('click', () =>{
         newBookClone.querySelector(".title").value = newBook.title;
         shelfArray[i].shelf.appendChild(newBookClone);
 
-        return; 
 
+        newBookClone.addEventListener('click' , ()=>{
+
+            document.querySelector(".booktitle input").value = newBook.title;
+            document.querySelector(".bookpage textarea").value = newBook.content;
+            document.querySelector(".bookpage input").value = newBook.author;
+
+
+            removeBookFromLibrary(newBook);
+            newBookClone.remove();
+            
+
+        })
+
+
+        break; 
     }
 
+    newBookTitle.value = "";
+    newBookContent.value = "";
+    newBookAuthor.value = "";
 
 
     addBookToLibrary(newBook);
